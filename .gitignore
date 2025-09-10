@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-site/node_modules/
+/node_modules
 /.pnp
 .pnp.js
 
@@ -9,8 +9,8 @@ site/node_modules/
 /coverage
 
 # next.js
-site/.next/
-site/out/
+/.next/
+/out/
 
 # production
 /build
@@ -25,14 +25,14 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-site/.env*.local
+.env*.local
 
 # vercel
 .vercel
 
 # typescript
-site/*.tsbuildinfo
-site/next-env.d.ts
+*.tsbuildinfo
+next-env.d.ts
 
 # Image files (keeping original assets)
 *.jpg

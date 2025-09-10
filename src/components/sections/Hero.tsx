@@ -108,7 +108,7 @@ export function Hero({ className }: HeroProps) {
                 <div className="relative bg-gradient-to-br from-candle-gold/20 to-ember-orange/20 rounded-full p-4 border border-candle-gold/30 shadow-2xl">
                   <div className="relative rounded-full overflow-hidden bg-parchment">
                     <Image
-                      src="/images/samantha-headshot.jpg"
+                      src="/samantha-headshot.jpg"
                       alt="Samantha - Funnel Psychology Expert"
                       width={400}
                       height={400}

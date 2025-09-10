@@ -34,12 +34,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Image files (keeping original assets)
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.svg
+# Exclude root-level image files but allow public directory
+# (Keep development/source images out of git but include public assets)
+/*.jpg
+/*.jpeg
+/*.png
+/*.gif
+/*.svg
+
+# Allow all public directory contents (required for deployment)
+!/public/
+!/public/**
 
 # OS generated files
 .DS_Store

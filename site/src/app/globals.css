@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /* Brand Colors */
+  --night-indigo: #1F2139;
+  --candle-gold: #F6C66D;
+  --ember-orange: #E8963A;
+  --parchment: #F4E8CE;
+  --deep-wood: #5A3B2E;
+  --arcane-violet: #6D4A7F;
+  --crystal-teal: #2FA7A3;
+  
+  /* Theme Variables */
+  --background: #F4E8CE;
+  --foreground: #1F2139;
+  --accent: #F6C66D;
+  --muted: #5A3B2E;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1F2139;
+    --foreground: #F4E8CE;
+  }
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--night-indigo);
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #F6C66D, #E8963A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-magical-gradient {
+    background: linear-gradient(135deg, #F6C66D 0%, #E8963A 50%, #6D4A7F 100%);
+  }
+  
+  .bg-constellation-gradient {
+    background: radial-gradient(ellipse at center, #1F2139 0%, #6D4A7F 70%, #2FA7A3 100%);
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 cursor-pointer;
+    @apply focus:outline-none focus:ring-2 focus:ring-candle-gold focus:ring-opacity-50;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-candle-gold to-ember-orange text-night-indigo;
+    @apply hover:shadow-glow hover:-translate-y-0.5 shadow-md;
+    @apply px-6 py-3 text-base;
+  }
+  
+  .btn-secondary {
+    @apply btn border-2 border-candle-gold text-candle-gold bg-transparent;
+    @apply hover:bg-candle-gold hover:text-night-indigo;
+    @apply px-6 py-3 text-base;
+  }
+  
+  .btn-sms {
+    @apply btn bg-gradient-to-br from-candle-gold via-ember-orange to-arcane-violet text-white;
+    @apply shadow-xl hover:shadow-2xl hover:scale-105;
+    @apply px-8 py-4 text-lg font-bold;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-sms::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+  
+  .btn-sms:hover::before {
+    transform: translateX(100%);
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-parchment rounded-xl shadow-magical border border-candle-gold/20;
+    @apply p-6 transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply card hover:shadow-constellation hover:-translate-y-1;
+  }
+  
+  .tool-card {
+    @apply card relative overflow-hidden;
+    background: linear-gradient(145deg, #F4E8CE, #ffffff);
+  }
+  
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #F6C66D, #E8963A);
+  }
+  
+  /* Form styles */
+  .form-input {
+    @apply w-full px-4 py-3 border-2 border-candle-gold/30 rounded-lg;
+    @apply bg-parchment/50 text-deep-wood placeholder-deep-wood/60;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:border-candle-gold focus:bg-parchment;
+    @apply focus:shadow-glow;
+  }
+  
+  .form-label {
+    @apply block mb-2 font-medium text-deep-wood text-sm;
+    @apply uppercase tracking-wide;
+  }
+  
+  /* Loading states */
+  .loading-shimmer {
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+  }
+  
+  .loading-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(246, 198, 109, 0.3),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Constellation elements */
+  .constellation-star {
+    @apply w-2 h-2 bg-candle-gold rounded-full shadow-glow;
+    @apply animate-constellation-twinkle;
+  }
+  
+  .constellation-line {
+    @apply absolute h-0.5 bg-gradient-to-r from-transparent via-candle-gold to-transparent;
+    @apply opacity-60;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+  
+  .section-padding-sm {
+    @apply py-16 lg:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Animation performance optimizations */
+@layer base {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    *, *::before, *::after {
+      animation-duration: revert !important;
+      animation-iteration-count: revert !important;
+      transition-duration: revert !important;
+      scroll-behavior: revert !important;
+    }
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--parchment);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--candle-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ember-orange);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--candle-gold);
+  color: var(--night-indigo);
+}
+
+::-moz-selection {
+  background: var(--candle-gold);
+  color: var(--night-indigo);
+}
